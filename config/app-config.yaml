@@ -1,25 +1,38 @@
-# Production Application Configuration
+# Unified Application Configuration
 application:
   name: DevOpsSimulator
-  version: 1.0.0
-  environment: production
-  
+  version: 2.0.0
+  environment: ${APP_ENV:development}  # possible values: development | production
+
 server:
-  host: 0.0.0.0
-  port: 8080
-  ssl_enabled: true
-  
+  host: ${SERVER_HOST:localhost}
+  port: ${SERVER_PORT:3000}
+  ssl_enabled: ${SSL_ENABLED:false}
+  hot_reload: ${HOT_RELOAD:false}
+
 logging:
-  level: INFO
-  format: json
-  output: /var/log/app.log
-  
+  level: ${LOG_LEVEL:INFO}            # INFO for production, DEBUG for development
+  format: ${LOG_FORMAT:json}          # pretty for dev, json for prod
+  output: ${LOG_OUTPUT:console}       # console for dev, /var/log/app.log for prod
+  show_stack_trace: ${SHOW_STACK_TRACE:false}
+
 database:
-  host: prod-db.example.com
-  port: 5432
-  name: devops_prod
-  
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  name: ${DB_NAME:devops_dev}
+
 features:
-  auto_scaling: true
-  load_balancer: enabled
-  backup_enabled: true
+  auto_scaling: ${AUTO_SCALING:false}
+  load_balancer: ${LOAD_BALANCER:disabled}
+  backup_enabled: ${BACKUP_ENABLED:false}
+  experimental_features: ${EXPERIMENTAL_FEATURES:false}
+
+development:
+  mock_external_apis: ${MOCK_APIS:false}
+  debug_mode: ${DEBUG_MODE:false}
+  cors_enabled: ${CORS_ENABLED:false}
+
+notifications:
+  slack_webhook: ${SLACK_WEBHOOK:""}
+  discord_webhook: ${DISCORD_WEBHOOK:""}
+  email_alerts: ${EMAIL_ALERTS:false}
