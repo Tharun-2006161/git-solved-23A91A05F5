@@ -1,6 +1,7 @@
 {
   "production": {
     "connection": {
+      "type": "single",
       "host": "prod-db.example.com",
       "port": 5432,
       "database": "devops_production",
@@ -11,18 +12,29 @@
     },
     "backup": {
       "enabled": true,
+      "strategy": "scheduled",
       "schedule": "0 2 * * *",
       "retention_days": 30,
-      "location": "/backups/database"
+      "location": "/backups/database",
+      "encryption": true,
+      "geo_redundancy": false
     },
     "replication": {
       "enabled": true,
       "replicas": 2,
-      "sync_mode": "synchronous"
+      "sync_mode": "synchronous",
+      "multi_region": false
+    },
+    "monitoring": {
+      "slow_query_threshold": 200,
+      "alert_on_anomaly": true,
+      "metrics_export": "prometheus"
     }
   },
+
   "development": {
     "connection": {
+      "type": "single",
       "host": "localhost",
       "port": 5432,
       "database": "devops_development",
@@ -34,17 +46,71 @@
     },
     "backup": {
       "enabled": false,
+      "strategy": "manual",
       "schedule": "manual",
       "retention_days": 7,
-      "location": "/tmp/backups"
+      "location": "/tmp/backups",
+      "encryption": false,
+      "geo_redundancy": false
     },
     "replication": {
       "enabled": false,
       "replicas": 0,
-      "sync_mode": "asynchronous"
+      "sync_mode": "asynchronous",
+      "multi_region": false
     },
     "seed_data": true,
     "reset_on_restart": true,
-    "debug_queries": true
+    "debug_queries": true,
+    "monitoring": {
+      "slow_query_threshold": 500,
+      "alert_on_anomaly": false,
+      "metrics_export": "none"
+    }
+  },
+
+  "experimental": {
+    "connection": {
+      "type": "distributed",
+      "hosts": [
+        "node1.example.com",
+        "node2.example.com",
+        "node3.example.com"
+      ],
+      "port": 5432,
+      "database": "devops_experimental",
+      "username": "experimental_admin",
+      "ssl_mode": "verify-full",
+      "pool_size": 50,
+      "timeout": 60,
+      "connection_pooling": "pgbouncer",
+      "read_replicas": 5
+    },
+    "backup": {
+      "enabled": true,
+      "strategy": "continuous",
+      "schedule": "*/15 * * * *",
+      "retention_days": 90,
+      "location": "s3://backups/experimental",
+      "encryption": true,
+      "geo_redundancy": true
+    },
+    "replication": {
+      "enabled": true,
+      "replicas": 5,
+      "sync_mode": "semi-synchronous",
+      "multi_region": true,
+      "regions": ["us-east", "eu-west", "ap-south"]
+    },
+    "ai_optimization": {
+      "query_optimization": true,
+      "index_suggestions": true,
+      "auto_vacuum_ml": true
+    },
+    "monitoring": {
+      "slow_query_threshold": 100,
+      "alert_on_anomaly": true,
+      "metrics_export": "prometheus"
+    }
   }
 }

@@ -1,31 +1,56 @@
 # Unified Application Configuration
 application:
   name: DevOpsSimulator
-  version: 2.0.0
-  environment: ${APP_ENV:development}  # possible values: development | production
+  version: 3.0.0
+  environment: ${APP_ENV:development}  # development | production | testing
+  experimental_mode: ${EXPERIMENTAL_MODE:false}
 
 server:
   host: ${SERVER_HOST:localhost}
   port: ${SERVER_PORT:3000}
   ssl_enabled: ${SSL_ENABLED:false}
   hot_reload: ${HOT_RELOAD:false}
+  multi_port:
+    - 3000
+    - 3001
+    - 3002
 
 logging:
-  level: ${LOG_LEVEL:INFO}            # INFO for production, DEBUG for development
-  format: ${LOG_FORMAT:json}          # pretty for dev, json for prod
+  level: ${LOG_LEVEL:INFO}            # INFO for prod, DEBUG/TRACE for dev/test
+  format: ${LOG_FORMAT:json}          # pretty for dev, structured/json for prod
   output: ${LOG_OUTPUT:console}       # console for dev, /var/log/app.log for prod
   show_stack_trace: ${SHOW_STACK_TRACE:false}
+  ai_analysis: ${AI_LOG_ANALYSIS:false}
 
 database:
   host: ${DB_HOST:localhost}
   port: ${DB_PORT:5432}
   name: ${DB_NAME:devops_dev}
+  distributed: ${DB_DISTRIBUTED:false}
 
 features:
   auto_scaling: ${AUTO_SCALING:false}
-  load_balancer: ${LOAD_BALANCER:disabled}
+  load_balancer: ${LOAD_BALANCER:standard}   # disabled | standard | ai-optimized
   backup_enabled: ${BACKUP_ENABLED:false}
+  chaos_engineering: ${CHAOS_ENGINEERING:false}
   experimental_features: ${EXPERIMENTAL_FEATURES:false}
+
+ai_features:
+  predictive_scaling: ${PREDICTIVE_SCALING:false}
+  anomaly_detection: ${ANOMALY_DETECTION:false}
+  auto_optimization: ${AUTO_OPTIMIZATION:false}
+  model_version: ${MODEL_VERSION:"v2.1.0"}
+
+cloud_providers:
+  - aws
+  - azure
+  - gcp
+  - digitalocean
+
+security:
+  zero_trust: ${ZERO_TRUST:false}
+  encryption: ${ENCRYPTION:"AES-256"}
+  audit_logging: ${AUDIT_LOGGING:standard}
 
 development:
   mock_external_apis: ${MOCK_APIS:false}
