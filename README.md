@@ -54,3 +54,4 @@ npm run dev
 # 5. Access the dashboard
 # -> http://localhost:3000
 ## FAQ
+update
