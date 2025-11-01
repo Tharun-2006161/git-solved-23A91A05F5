@@ -1,12 +1,12 @@
-# 🏗️ System Architecture
+# System Architecture
 
-## 🌐 Overview
+## Overview
 **DevOps Simulator** uses a **microservices architecture** built for **high availability**, **scalability**, and **AI-driven automation**.  
 It supports both **Production** and **Development** environments, with an **Experimental AI Build** for advanced predictive scaling and analytics.
 
 ---
 
-## ⚙️ Core Components
+## Core Components
 
 ### 1. Application Server
 | Environment | Technology | Port | Scaling | Notes |
@@ -53,16 +53,16 @@ It supports both **Production** and **Development** environments, with an **Expe
 
 ---
 
-## 🚀 Deployment Strategy
+## Deployment Strategy
 | Environment | Method | Zero Downtime | Rollback |
 |--------------|---------|----------------|-----------|
-| **Production** | Rolling updates | ✅ Yes | Automated rollback |
-| **Development** | Docker Compose | ❌ No | Manual (Git checkout) |
-| **Experimental (AI)** | Canary + Multi-Cloud Deployment | ✅ Yes | AI-powered predictive rollback |
+| **Production** | Rolling updates | Yes | Automated rollback |
+| **Development** | Docker Compose | No | Manual (Git checkout) |
+| **Experimental (AI)** | Canary + Multi-Cloud Deployment | Yes | AI-powered predictive rollback |
 
 ---
 
-## 🧠 AI/ML Pipeline (Experimental Only)
+## AI/ML Pipeline (Experimental Only)
 | Component | Model | Purpose | Framework |
 |------------|--------|----------|------------|
 | Anomaly Detector | LSTM Neural Network | Detect abnormal performance trends | TensorFlow |
@@ -75,7 +75,7 @@ It supports both **Production** and **Development** environments, with an **Expe
 
 ---
 
-## ☁️ Multi-Cloud Orchestration (Experimental Only)
+## Multi-Cloud Orchestration (Experimental Only)
 - **Supported Clouds:** AWS, Azure, GCP, DigitalOcean  
 - **Load Balancing:** Global Anycast + GeoDNS  
 - **Failover:** Automatic cross-cloud failover  
@@ -83,7 +83,7 @@ It supports both **Production** and **Development** environments, with an **Expe
 
 ---
 
-## 🔒 Security
+## Security
 | Environment | Encryption | Credentials | CORS | Debug Access |
 |--------------|-------------|--------------|-------|----------------|
 | **Production** | SSL/TLS enabled | Encrypted secrets | Restricted | Disabled |
@@ -92,7 +92,7 @@ It supports both **Production** and **Development** environments, with an **Expe
 
 ---
 
-## 👨‍💻 Development Workflow
+## Development Workflow
 1. Make code changes  
 2. Auto-reload triggers rebuild  
 3. Run unit tests  
@@ -101,7 +101,7 @@ It supports both **Production** and **Development** environments, with an **Expe
 
 ---
 
-## 🧪 Experimental Features (AI Build)
+## Experimental Features (AI Build)
 ⚠️ *These are beta-stage capabilities under active testing:*
 - AI-driven anomaly detection  
 - Predictive auto-scaling and load forecasting  
@@ -110,17 +110,4 @@ It supports both **Production** and **Development** environments, with an **Expe
 - Automated rollback upon anomaly detection  
 
 ---
-
-## ✅ Summary Overview
-
-| Mode | Target | Deployment Tool | Monitoring | Scaling | Security |
-|-------|---------|-----------------|-------------|----------|-----------|
-| **Production** | Live users | Kubernetes | Prometheus + Grafana | Auto | High |
-| **Development** | Local testing | Docker Compose | Console + Prometheus | Manual | Relaxed |
-| **Experimental (AI)** | Multi-cloud environments | Kubernetes + AI | Prometheus + ELK + AI | Predictive | Zero-Trust |
-
----
-
-📘 **In summary**,  
-DevOps Simulator provides both **traditional CI/CD environments** and an **AI-augmented experimental architecture** that learns, predicts, and optimizes your deployments intelligently.
 
