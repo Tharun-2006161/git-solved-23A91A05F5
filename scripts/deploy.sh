@@ -19,7 +19,7 @@ APP_NAME="DevOpsSimulator"
 
 # Common pre-checks
 if [ ! -f "$CONFIG_FILE" ]; then
-  echo "❌ Error: Configuration file not found at $CONFIG_FILE"
+  echo " Error: Configuration file not found at $CONFIG_FILE"
   exit 1
 fi
 
@@ -42,7 +42,7 @@ case "$DEPLOY_ENV" in
     echo "Starting Kubernetes rolling update..."
     # kubectl rolling-update devops-simulator
 
-    echo "✅ Production deployment completed successfully!"
+    echo "Production deployment completed successfully!"
     echo "Application available at: $APP_URL"
     ;;
   
@@ -71,11 +71,11 @@ case "$DEPLOY_ENV" in
 
     echo "Performing health check..."
     curl -f "http://localhost:$APP_PORT/health" || {
-      echo "❌ Health check failed!"
+      echo " Health check failed!"
       exit 1
     }
 
-    echo "✅ Development deployment completed!"
+    echo " Development deployment completed!"
     echo "Application running at: $APP_URL"
     echo "Hot reload enabled - code changes will auto-refresh"
     ;;
@@ -92,7 +92,7 @@ case "$DEPLOY_ENV" in
     echo "AI Optimization: $AI_OPTIMIZATION"
 
     if [ "$AI_OPTIMIZATION" = true ]; then
-      echo "🤖 Running AI pre-deployment analysis..."
+      echo "Running AI pre-deployment analysis..."
       python3 scripts/ai-analyzer.py --analyze-deployment || echo "AI analysis skipped (script missing)"
       echo "✓ AI analysis complete"
     fi
@@ -118,26 +118,26 @@ case "$DEPLOY_ENV" in
     echo "- 100% traffic to new version"
 
     if [ "$AI_OPTIMIZATION" = true ]; then
-      echo "🤖 AI monitoring active"
+      echo " AI monitoring active"
       echo "- Anomaly detection: ENABLED"
       echo "- Auto-rollback: ENABLED"
       echo "- Self-optimization: LEARNING"
     fi
 
     if [ "$CHAOS_TESTING" = true ]; then
-      echo "⚠️  Running chaos engineering tests..."
+      echo "  Running chaos engineering tests..."
       # Chaos test logic
     fi
 
     echo "================================================"
-    echo "✅ Experimental AI-powered deployment complete!"
+    echo " Experimental AI-powered deployment complete!"
     echo "AI Dashboard: https://ai.example.com"
     echo "Multi-Cloud Status: https://clouds.example.com"
     echo "================================================"
     ;;
   
   *)
-    echo "❌ Invalid environment: $DEPLOY_ENV"
+    echo " Invalid environment: $DEPLOY_ENV"
     echo "Usage: DEPLOY_ENV={production|development|experimental} ./deploy.sh"
     exit 1
     ;;
